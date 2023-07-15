@@ -1,8 +1,8 @@
 # ORM: Doctrine
 
-## [Page officiel du cours Symfony 6: ORM Doctrine](https://djemai-samy.com/posts/3.symfony6-orm.article)
+## [Page officiel du cours Symfony 6: ORM Doctrine](https://djemai-samy.com/posts/3.symfony6-doctrine.article)
 
-![Image du cours: Symfony 6: ORM Doctrine](https://djemai-samy.com/blog/2.programmation/2.server/4.php/3.symfony6/1.symfony6-initiation/3.symfony6-orm/3.symfony6-orm.png)
+![Image du cours: Symfony 6: ORM Doctrine](https://djemai-samy.com/blog/2.programmation/2.server/4.php/3.symfony6/1.symfony6-initiation/3.symfony6-doctrine/3.symfony6-doctrine.png)
 
 Ce support de cours mettra l'accent sur la gestion des bases de données avec Symfony.
 
