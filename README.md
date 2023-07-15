@@ -103,6 +103,8 @@ Dans le développement web, l'architecture Modèle-Vue-Contrôleur (MVC) est lar
 
 Le contrôleur est la partie du MVC chargée de recevoir les requêtes HTTP, d'effectuer des traitements et de renvoyer les réponses appropriées.
 
+![Representation graphique du patterne MVC dans le developpement de serveur WEB HTTP. Le Contrôleur s'occupe de traiter les données réçues, d'interagir avec le modèle pour enregistrer ou recuperer des données de la base de données, et construit une réponse en utilisant les moteur de template avant de l'envoyer au client.](https://djemai-samy.com/blog/2.programmation/2.server/4.php/3.symfony6/1.symfony6-initiation/2.symfony6-controller/2.symfony6-controller.1.mvc.svg)
+
 ---
 
 ### 1.2. Présentation de l'architecture d'une application Symfony et le rôle des contrôleurs
@@ -110,6 +112,8 @@ Le contrôleur est la partie du MVC chargée de recevoir les requêtes HTTP, d'e
 Dans le contexte de Symfony, une application est structurée en différents composants, notamment les contrôleurs, les vues et les modèles.
 
 Les contrôleurs agissent comme des intermédiaires entre les routes (URL) et les actions à effectuer sur les données.
+
+![Representation graphique du fonctionnement d'un contrôleur avec Symfony 6. Le Kernel est reponsable du Routing, et execute l'action associé à la route et à la ma ethode de la reupete HTTP reçue. Le contrôleur est composé d'action associé à des route qui seront éxécutées par le Kernel.](https://djemai-samy.com/blog/2.programmation/2.server/4.php/3.symfony6/1.symfony6-initiation/2.symfony6-controller/2.symfony6-controller-2-Router.svg)
 
 Ils récupèrent les informations de la requête, traitent les données via les modèles et génèrent des réponses pour les afficher aux utilisateurs.
 
