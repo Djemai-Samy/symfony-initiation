@@ -188,12 +188,12 @@ Pour être valide, une action doit toujours retourner un objet de type `Response
 
 Elle est importé depuis Symfony et prend deux paramètre:
 
- - `content`: Une chaine de caractère représentant le contenu a envoyer au client, cela peut etre du texte, du JSON ou du HTML par exemple.
- - `status`: Un entier pour indiquer le status de la réponse HTTP, sa valeur est de `200` par défaut.
- - `headers`: Un tableau pour ajouter des en-tetes à vos réponses HTTP.
+- `content`: Une chaine de caractère représentant le contenu a envoyer au client, cela peut etre du texte, du JSON ou du HTML par exemple.
+- `status`: Un entier pour indiquer le status de la réponse HTTP, sa valeur est de `200` par défaut.
+- `headers`: Un tableau pour ajouter des en-tetes à vos réponses HTTP.
 
 ```php
-// src/Controller/FilmController.php
+// src/Controller/AccueilController.php
 
 namespace App\Controller;
 
@@ -222,7 +222,7 @@ Lorsque l'utilisateur accède à cette [URL](http://localhost:8000), l'action "i
 Vous pouvez aussi retourner une reponse en `json`, en utilisant la classe `JsonResponse`, qui hérite de la classe `Response`:
 
 ```php
-// src/Controller/FilmController.php
+// src/Controller/AccueilController.php
 
 namespace App\Controller;
 
@@ -235,9 +235,7 @@ class AccueilController
    public function index(): Response
    {
        return new JsonResponse(
-         ['message'=>'Bonjour tout le monde!'],
-         Response::HTTP_OK,
-         ['content-type' => 'application/json']
+         ['message'=>'Bonjour tout le monde!']
        );
    }
 }
@@ -252,7 +250,7 @@ Dans Symfony, vous pouvez définir des routes dynamiques en utilisant des partie
 Par exemple, vous pouvez utiliser des accolades `{}` pour indiquer un paramètre variable dans une partie de l'URL.
 
 ```php
-// src/Controller/FilmController.php
+// src/Controller/AccueilController.php
 
 // Code pécédent ...
 
@@ -260,9 +258,7 @@ Par exemple, vous pouvez utiliser des accolades `{}` pour indiquer un paramètre
 public function salutNom($nom): Response
 {
    return new JsonResponse(
-     ['message'=>'Salut ' . $nom . '!'],
-     Response::HTTP_OK,
-     ['content-type' => 'application/json']
+     ['message'=>'Salut ' . $nom . '!']
    );
 }
 ```
@@ -282,7 +278,7 @@ Vous pouvez également spécifier des contraintes sur les paramètres des routes
 Par exemple, vous pouvez définir un paramètre `nombre` qui doit être un nombre entier :
 
 ```php
-// src/Controller/FilmController.php
+// src/Controller/AccueilController.php
 
 // Code pécédent ...
 
@@ -290,9 +286,7 @@ Par exemple, vous pouvez définir un paramètre `nombre` qui doit être un nombr
 public function salutID($id): Response
 {
    return new JsonResponse(
-     ['message'=>'L\identifiant réçu est ' . $id],
-     Response::HTTP_OK,
-     ['content-type' => 'application/json']
+     ['message'=>'L\identifiant réçu est ' . $id]
    );
 }
 ```
@@ -368,8 +362,6 @@ public function salutNom(Request $req): Response
 
   return new JsonResponse(
     ['message'=>'Salut ' . $nom . '!'],
-    Response::HTTP_OK,
-    ['content-type' => 'application/json']
   );
 }
 ```
@@ -421,7 +413,6 @@ public function addition(Request $req): Response
     return new JsonResponse(
       ['erreur'=>'Veuillez indiquer x et y!'],
       Response::HTTP_BAD_REQUEST,
-      ['content-type' => 'application/json']
     );
   }
 
@@ -435,8 +426,6 @@ public function addition(Request $req): Response
 
   return new Response(
     ['erreur'=> $parametreX . ' + ' . $parametreY . ' = ' . $somme],
-    Response::HTTP_OK,
-    ['content-type' => 'application/json']
   );
 }
 ```
@@ -463,7 +452,6 @@ public function bonjour(Request $req): Response {
     return new JsonResponse(
       ['erreur' => 'nom et prenom non fournit!'],
       Response::HTTP_BAD_REQUEST,
-      ['content-type' => 'application/json']
     );
   }
 
@@ -475,8 +463,6 @@ public function bonjour(Request $req): Response {
 
   return new JsonResponse(
     ['message' => 'Bonjour ' . $nom . '  ' . $prenom],
-    Response::HTTP_OK,
-    ['content-type' => 'application/json']
   );
 }
 ```
@@ -514,8 +500,7 @@ class AccueilController extends Controller{
   public function index(Request $req): Response {
 
     return $this->json(
-      ['message' => 'Bonjour ' . $nom . '  ' . $prenom],
-      Response::HTTP_OK,
+      ['message' => 'Bonjour ' . $nom . '  ' . $prenom]
     );
   }
 }
