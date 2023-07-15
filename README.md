@@ -128,116 +128,116 @@ Bien sûr ! Voici le code pour les exemples du chapitre 2 :
 
 ### 1. Création d'un nouveau contrôleur Symfony
 
-    Pour créer un nouveau contrôleur dans Symfony, suivez ces étapes :
+Pour créer un nouveau contrôleur dans Symfony, suivez ces étapes :
 
-      1. Naviguez vers le répertoire src/Controller de votre projet Symfony.
-      2. Créez un nouveau fichier PHP pour votre contrôleur, par exemple AccueilController.php.
-      3. Ajouter le namespace `App\Controller` pour que Symfony puissent reconnaitre vontre controlleur et le charger.
-      4. Déclarez la classe AccueilController (Le nom de la classe doit être imperativement le meme que le nom du fichier).
+  1. Naviguez vers le répertoire src/Controller de votre projet Symfony.
+  2. Créez un nouveau fichier PHP pour votre contrôleur, par exemple AccueilController.php.
+  3. Ajouter le namespace `App\Controller` pour que Symfony puissent reconnaitre vontre controlleur et le charger.
+  4. Déclarez la classe AccueilController (Le nom de la classe doit être imperativement le meme que le nom du fichier).
 
-    Voici un exemple de code pour la création d'un contrôleur de base :
+Voici un exemple de code pour la création d'un contrôleur de base :
 
-    ```php
-    // src/Controller/AccueilController.php
+```php
+// src/Controller/AccueilController.php
 
-    namespace App\Controller;
+namespace App\Controller;
 
-    class AccueilController
-    {
-        // Vos actions seront définies ici.
+class AccueilController
+{
+    // Vos actions seront définies ici.
 
-    }
-    ```
+}
+```
 
 ---
 
 ### 2. Configuration des routes pour accéder a une action
 
-    Dans Symfony, les routes sont associées à des actions (méthodes) de notre classe contrôleur.
+Dans Symfony, les routes sont associées à des actions (méthodes) de notre classe contrôleur.
 
-    Symfony propose plusieurs méthodes pour configurer les routes : l'utilisation des annotations, l'utilisation d'un fichier de configuration YAML ou XML.
+Symfony propose plusieurs méthodes pour configurer les routes : l'utilisation des annotations, l'utilisation d'un fichier de configuration YAML ou XML.
 
-    Nous allons utiliser la dérnière méthodes ajoutée à Sympfony 6, les `Attributes`.
+Nous allons utiliser la dérnière méthodes ajoutée à Sympfony 6, les `Attributes`.
 
-    ```php
-    // src/Controller/AccueilController.php
+```php
+// src/Controller/AccueilController.php
 
-    // ...
+// ...
 
-    use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
-    class AccueilController
-    { 
-        #[Route("/", name="accueil", methods:['GET','HEAD'])]
-    }
-    ```
+class AccueilController
+{ 
+  #[Route("/", name="accueil", methods:['GET','HEAD'])]
+}
+```
 
-    Ici nous avons définit une route nommée `accueil` sur l'url `http://localhost/` et n'accepete que des requetes de type `GET` ou `HEAD`.
+Ici nous avons définit une route nommée `accueil` sur l'url `http://localhost/` et n'accepete que des requetes de type `GET` ou `HEAD`.
 
 ---
 
 ### 3. L'action
 
-    Les actions sont les méthodes executé quand une requete est reçu sur l'url indiquée par la Route qui la précéde.
+Les actions sont les méthodes executé quand une requete est reçu sur l'url indiquée par la Route qui la précéde.
 
-    Pour être valide, une action doit toujours retourner un objet de type `Response` representant la réponse envoyée au client une fois le traitement terminée.
+Pour être valide, une action doit toujours retourner un objet de type `Response` representant la réponse envoyée au client une fois le traitement terminée.
 
-    Elle est importé depuis Symfony et prend deux paramètre:
+Elle est importé depuis Symfony et prend deux paramètre:
 
-      - `content`: Une chaine de caractère représentant le contenu a envoyer au client, cela peut etre du texte, du JSON ou du HTML par exemple.
-      - `status`: Un entier pour indiquer le status de la réponse HTTP, sa valeur est de `200` par défaut.
-      - `headers`: Un tableau pour ajouter des en-tetes à vos réponses HTTP.
+ - `content`: Une chaine de caractère représentant le contenu a envoyer au client, cela peut etre du texte, du JSON ou du HTML par exemple.
+ - `status`: Un entier pour indiquer le status de la réponse HTTP, sa valeur est de `200` par défaut.
+ - `headers`: Un tableau pour ajouter des en-tetes à vos réponses HTTP.
 
-    ```php
-    // src/Controller/FilmController.php
+```php
+// src/Controller/FilmController.php
 
-    namespace App\Controller;
+namespace App\Controller;
 
-    use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Response;
 
-    class AccueilController
-    {
-        #[Route("/", name="accueil")]
-        public function index(): Response
-        {
-            return new Response(
-              '<h1>Salut tout le monde!</h1>', 
-              Response::HTTP_OK,
-              ['content-type' => 'text/html']
-            );
-        }
-    }
-    ```
+class AccueilController
+{
+   #[Route("/", name="accueil")]
+   public function index(): Response
+   {
+       return new Response(
+         '<h1>Salut tout le monde!</h1>', 
+         Response::HTTP_OK,
+         ['content-type' => 'text/html']
+       );
+   }
+}
+```
 
-    Dans cet exemple, la route "/" est associée à l'action "salut()" du contrôleur "AccueilController".
+Dans cet exemple, la route "/" est associée à l'action "salut()" du contrôleur "AccueilController".
 
-    Lorsque l'utilisateur accède à cette [URL](http://localhost:8000), l'action "index()" est exécutée.
+Lorsque l'utilisateur accède à cette [URL](http://localhost:8000), l'action "index()" est exécutée.
 
-    ---
+---
 
-    Vous pouvez aussi retourner une reponse en `json`, en utilisant la classe `JsonResponse`, qui hérite de la classe `Response`:
+Vous pouvez aussi retourner une reponse en `json`, en utilisant la classe `JsonResponse`, qui hérite de la classe `Response`:
 
-    ```php
-    // src/Controller/FilmController.php
+```php
+// src/Controller/FilmController.php
 
-    namespace App\Controller;
+namespace App\Controller;
 
-    use Symfony\Component\HttpFoundation\Response;
-    use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
-    class AccueilController
-    {
-        #[Route("/", name="accueil")]
-        public function index(): Response
-        {
-            return new JsonResponse(
-              ['message'=>'Bonjour tout le monde!'],
-              Response::HTTP_OK,
-              ['content-type' => 'application/json']
-            );
-        }
-    }
-    ```
+class AccueilController
+{
+   #[Route("/", name="accueil")]
+   public function index(): Response
+   {
+       return new JsonResponse(
+         ['message'=>'Bonjour tout le monde!'],
+         Response::HTTP_OK,
+         ['content-type' => 'application/json']
+       );
+   }
+}
+```
 
 ---
 
