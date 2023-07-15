@@ -808,8 +808,8 @@ Vous avez appris à :
 
 Il est important de continuer à explorer les fonctionnalités avancées des formulaires Symfony pour enrichir vos compétences en développement web:
 
-- [Documentation officielle de Symfony sur les formulaires]([https://symfony.com/doc/current/forms.html](https://symfony.com/doc/current/forms.html))
-- [Cookbook de Symfony sur les formulaires]([https://symfony.com/doc/current/form/index.html](https://symfony.com/doc/current/form/index.html))
+- [Documentation officielle de Symfony sur les formulaires](https://symfony.com/doc/current/forms.html)
+- [Cookbook de Symfony sur les formulaires](https://symfony.com/doc/current/form/index.html)
 
 ---
 
