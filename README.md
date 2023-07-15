@@ -172,7 +172,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccueilController
 { 
-  #[Route("/", name="accueil", methods:['GET','HEAD'])]
+  #[Route("/", name:"accueil", methods:['GET','HEAD'])]
 }
 ```
 
@@ -201,7 +201,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AccueilController
 {
-   #[Route("/", name="accueil")]
+   #[Route("/", name:"accueil")]
    public function index(): Response
    {
        return new Response(
@@ -231,7 +231,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AccueilController
 {
-   #[Route("/", name="accueil")]
+   #[Route("/", name:"accueil")]
    public function index(): Response
    {
        return new JsonResponse(
@@ -256,7 +256,7 @@ Par exemple, vous pouvez utiliser des accolades `{}` pour indiquer un paramètre
 
 // Code pécédent ...
 
-#[Route("/salut/{nom}", name="accueil.salut")]
+#[Route("/salut/{nom}", name:"accueil.salut")]
 public function salutNom($nom): Response
 {
    return new JsonResponse(
@@ -286,10 +286,10 @@ Par exemple, vous pouvez définir un paramètre `nombre` qui doit être un nombr
 
 // Code pécédent ...
 
-#[Route("/salut/{id<\d+>}", name="accueil.id")]
+#[Route("/salut/{id<\d+>}", name:"accueil.id")]
 public function salutID($id): Response
 {
-   return new Response(
+   return new JsonResponse(
      ['message'=>'L\identifiant réçu est ' . $id],
      Response::HTTP_OK,
      ['content-type' => 'application/json']
@@ -345,8 +345,8 @@ Vous pouvez accédes aux données de la requete a travers ses propriétés.
 // src/Controller/FilmController.php
 
 // Code précedent...
-#[Route("/salut/{nom}", name="accueil.salut")]
-public function index(Request $req): Response
+#[Route("/salut/{nom}", name:"accueil.salut")]
+public function salutNom(Request $req): Response
 {
   // Accéder au données de $_POST
   $corps = $req->request;
@@ -355,18 +355,18 @@ public function index(Request $req): Response
   $parametres = $req->query;
 
   // Accéder aux cookies de la requête
-  $cookies = $request->cookies;
+  $cookies = $req->cookies;
     
   // Accéder aux en-têtes de la requête
-  $entetes = $request->headers;
+  $entetes = $req->headers;
   
   // Accéder aux fichiers de la requête
-  $fichiers = $request->files;
+  $fichiers = $req->files;
   
   // Accéder aux données du serveur
-  $serveur = $request->server;
+  $serveur = $req->server;
 
-  return new Response(
+  return new JsonResponse(
     ['message'=>'Salut ' . $nom . '!'],
     Response::HTTP_OK,
     ['content-type' => 'application/json']
@@ -406,7 +406,7 @@ Voici un exemple ou nous récupérons un nombre envoyé dans les paramètre d'ur
 // src/Controller/FilmController.php
 
 // Code précedent...
-#[Route("/add", name="accueil.addition")]
+#[Route("/add", name:"accueil.addition")]
 public function addition(Request $req): Response
 {
   // Savoir si le paramètre x a été récu
@@ -418,7 +418,7 @@ public function addition(Request $req): Response
   // Tester si x ou y n'a pas été reçu
   if(!$isX || !$isY){
     // Retourner une reponse pour indiquer l'erreur
-    return new Response(
+    return new JsonResponse(
       ['erreur'=>'Veuillez indiquer x et y!'],
       Response::HTTP_BAD_REQUEST,
       ['content-type' => 'application/json']
