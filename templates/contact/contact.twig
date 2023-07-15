@@ -1,0 +1,14 @@
+{# Dans "/templates/contact.twig" #}
+
+{% extends 'layout/base.twig' %}
+
+{% block titrePage %}Contact{% endblock %}
+
+{% block contenuMain %}
+  <h1>Contactez-nous :</h1>
+  <form>
+    <input name='Email' placeholder='Entrez votre email'/>
+    <textarea name='message' placeholder='Votre message...'></textarea>
+    <button>Envoyer</button>
+  </form>
+{% endblock %}

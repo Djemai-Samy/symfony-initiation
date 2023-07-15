@@ -1,0 +1,8 @@
+{# Dans '/templates/layout/navbar.twig' #}
+{% macro navbar(navClasse) %}
+  <nav class="{{ navClasse }}">
+    <a href={{ path('accueil')}}>Accueil</a>
+    <a href={{ path('profil')}}>Profil</a>
+    <a href={{ path('contact')}}>Contact</a>
+  </nav>
+{% endmacro %}

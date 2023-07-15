@@ -1,0 +1,22 @@
+{# Dans "/templates/accueil/accueil.twig" #}
+
+{% extends 'layout/base.twig' %}
+
+{% block contenuMain %}
+  <h1>Bienvenue !</h1>
+
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    Nesciunt saepe blanditiis, excepturi id at amet reiciendis ad!
+    Voluptate dolor omnis nam, provident veritatis, iure inventore vel repellendus expedita tempore asperiores?
+  </p>
+
+  <section>
+    {% set prenom = 'Samy' %}
+    {% set nom = 'Djemai' %}
+    {% set age = 30 %}
+    <h2>Bonjour {{ nom ~ ' ' ~ prenom }}</h2>
+    <p>Votre âge est {{ age }}</p>
+  </section>
+
+{% endblock %}

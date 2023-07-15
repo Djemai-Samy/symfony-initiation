@@ -1,0 +1,15 @@
+
+nav{
+  background-color: hsla(236, 30%, 30%, 1);
+  padding: 1em;
+}
+
+nav a{
+  color: white;
+  margin: 0 1em;
+}
+
+.nav-footer{
+  display: flex;
+  flex-direction: column;
+}

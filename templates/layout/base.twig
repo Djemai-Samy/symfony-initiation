@@ -1,0 +1,35 @@
+{# Dans le template parent "templates/layout/base.twig" #}
+
+{# Dans le template parent "base.twig" #}
+{% import 'layout/layout.macro.twig' as layout %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block styles %}
+      <link rel="stylesheet" href="/css/global.css">
+      <link rel="stylesheet" href="/css/navbar.css">
+    {% endblock %}
+
+    <title>
+      {% block titrePage %}Titre Site{% endblock %}
+    </title>
+  </head>
+
+  <body>
+    <header>
+      {{ layout.navbar('nav-header') }}
+    </header>
+
+    <main>
+      {% block contenuMain %}{% endblock %}
+    </main>
+
+    <footer>
+      {{ layout.navbar('nav-footer') }}
+    </footer>
+  <body>
+</html>

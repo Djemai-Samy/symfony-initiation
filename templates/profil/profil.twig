@@ -1,0 +1,25 @@
+{# Dans "/templates/profil.twig" #}
+
+{% extends 'layout/base.twig' %}
+
+  {% block styles %}
+    {{ parent()}}
+
+    <link rel="stylesheet" href="/css/notes.css">
+  {% endblock %}
+
+{% block titrePage %}Profil de {{ nom }}{% endblock %}
+
+{% block contenuMain %}
+  <h1>Bonjour {{ nom|capitalize ~ ' ' ~ prenom|capitalize }}!</h1>
+
+  <h2>Vous avez {{ notes|length }} notes.</h2>
+
+  {% if notes|length %}
+    
+    {% include 'profil/notes.twig' %}
+
+  {% else %}
+    <p>Vous n'avez pas de notes pour l'instant</p>
+  {% endif %}
+{% endblock %}

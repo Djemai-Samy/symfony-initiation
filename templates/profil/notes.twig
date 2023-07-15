@@ -1,0 +1,28 @@
+{# Dans la template "/profil/notes.twig" #}
+<table>
+  <thead>
+    <tr>
+      <th>Matiere</th>
+      <th>Note</th>
+      <th>Statut</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% if notes|length > 0 %}
+      {% for matiere, note in notes %}
+        <tr>
+          <td>{{ matiere|capitalize }}</td>
+          <td>{{ note }}</td>
+          <td>{{ note > 10 ? '✅ Validé' : '❌ Ajourné' }}</td>
+        </tr>
+      {% endfor %}
+      <tr>
+          {% set moyenne = notes|moyenne %}
+          <td><strong>Moyenne</strong></td>
+          <td>{{ format(moyenne) }}</td>
+          <td>{{ moyenne > 10 ? '✅ Validé' : '❌ Ajourné' }}</td>
+        </tr>
+    {% endif %}
+  </tbody>
+</table>
