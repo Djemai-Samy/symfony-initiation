@@ -1,0 +1,45 @@
+# config/packages/security.yaml
+security:
+  # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+  password_hashers:
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+  providers:
+    app_user_provider:
+      entity:
+        class: App\Entity\User
+        property: email
+    
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      lazy: true
+      provider: app_user_provider
+
+      # Activez les différents moyen d'authentification
+      # https://symfony.com/doc/current/security.html#the-firewall
+      form_login:
+      
+        # "app_login" le nom de la route pour le login
+        login_path: app_login
+        check_path: app_login
+        
+        username_parameter: email
+        password_parameter: password
+        
+        # L'url de redirection aprés une authentification réussie
+        default_target_path: /profil
+
+      logout:
+        # "app_logout" le nom de la route pour la déconnexion
+        path: app_logout
+
+  # Méthode facile pour contrôler l'accés a des portion de votre site
+  # Note: seul la premièr contrôle d'accées corespoendant sera utilisé
+  role_hierarchy:
+    ROLE_ADMIN: [ROLE_USER]
+  access_control:
+    - { path: '^/profil', roles: [ROLE_USER] }
+    - { path: ^/admin, roles: ROLE_ADMIN }

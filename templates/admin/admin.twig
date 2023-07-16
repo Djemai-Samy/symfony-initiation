@@ -1,0 +1,10 @@
+{# Dans le fichier: templates/profil/profil.twig #}
+{% extends 'layout/base.twig' %}
+
+{% block title %}
+ Administration
+{% endblock %}
+
+{% block body %}
+  <h1>Dashboard de {{ app.user.email }}</h1>
+{% endblock %}

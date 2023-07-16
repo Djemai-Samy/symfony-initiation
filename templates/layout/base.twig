@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+      <header>
+        <nav>
+          <a href={{ path('accueil') }}>Accueil</a>
+            
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          
+            <a href={{ path('profil') }}>Profil</a>
+            <a href={{ path('app_logout') }}>Déconnexion</a>
+
+          {% else %}
+
+            <a href={{ path('app_register') }}>Inscription</a>
+            <a href={{ path('app_login') }}>Connexion</a>
+
+          {% endif %}
+          
+          {% if is_granted('ROLE_ADMIN') %}
+            <a href={{path('admin')}}>Administration</a>
+          {% endif %}
+        </nav>
+      </header>
+
+      {% block body %}{% endblock %}
+    </body>
+</html>
